@@ -8,6 +8,12 @@ description = "Premium managed services for enterprise infrastructure"
 # The default language; used in feeds.
 default_language = "en"
 
+# The taxonomies to be rendered for the site and their configuration.
+taxonomies = [
+    {name = "tags", feed = true},
+    {name = "categories", feed = true},
+]
+
 # The site author info: used in feeds and meta tags
 [extra]
 author = "Server Wranglers Team"
@@ -29,12 +35,6 @@ feed_limit = 20
 # static files. Note that for this to work, both `static` and output directory need to be
 # on the same filesystem. Note that the theme's `static` files are always copied.
 hard_link_static = false
-
-# The taxonomies to be rendered for the site and their configuration.
-taxonomies = [
-    {name = "tags", feed = true},
-    {name = "categories", feed = true},
-]
 
 # Whether to build the search index to be used later on by a JavaScript library
 build_search_index = true
