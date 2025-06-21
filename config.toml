@@ -1,0 +1,69 @@
+# The URL the site will be built for
+base_url = "https://serverwranglers.com"
+
+# The site title and description; used in feeds by default.
+title = "Server Wranglers"
+description = "Premium managed services for enterprise infrastructure"
+
+# The default language; used in feeds.
+default_language = "en"
+
+# The site author info: used in feeds and meta tags
+[extra]
+author = "Server Wranglers Team"
+
+# When set to "true", the generated HTML files are minified.
+minify_html = true
+
+# When set to "true", a feed is automatically generated.
+generate_feed = true
+
+# The filename to use for feeds. Used as the template filename, too.
+feed_filename = "atom.xml"
+
+# The number of articles to include in the feed. All items are included if
+# this limit is not set (the default).
+feed_limit = 20
+
+# When set to "true", files in the `static` directory are hard-linked. Useful for large
+# static files. Note that for this to work, both `static` and output directory need to be
+# on the same filesystem. Note that the theme's `static` files are always copied.
+hard_link_static = false
+
+# The taxonomies to be rendered for the site and their configuration.
+taxonomies = [
+    {name = "tags", feed = true},
+    {name = "categories", feed = true},
+]
+
+# Whether to build the search index to be used later on by a JavaScript library
+build_search_index = true
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+highlight_theme = "visual-studio-dark"
+
+# Whether to render emoji shortcodes
+render_emoji = true
+
+# Whether external links are to be opened in a new tab
+# If this is true, a `rel="noopener"` will always be added for security reasons
+external_links_target_blank = true
+
+# Whether to set rel="nofollow" for all external links
+external_links_no_follow = true
+
+# Whether to set rel="noreferrer" for all external links
+external_links_no_referrer = true
+
+[extra.nav]
+# Navigation items
+items = [
+    { name = "Home", url = "/" },
+    { name = "Services", url = "/#services" },
+    { name = "About", url = "/#about" },
+    { name = "Blog", url = "/blog/" },
+    { name = "Contact", url = "/#contact" },
+]
