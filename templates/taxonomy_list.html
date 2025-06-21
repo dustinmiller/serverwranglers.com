@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="main-content">
+    <div class="container">
+        <div class="page-header">
+            <h1>All {{ taxonomy.name | title }}</h1>
+            <p>Browse content by {{ taxonomy.name }}</p>
+        </div>
+
+        <div class="tags" style="justify-content: center; margin-bottom: 4rem;">
+            {% for term in terms %}
+            <a href="{{ term.permalink }}" class="tag" style="font-size: 1rem; padding: 0.8rem 1.5rem;">
+                {{ term.name }} ({{ term.pages | length }})
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock content %}

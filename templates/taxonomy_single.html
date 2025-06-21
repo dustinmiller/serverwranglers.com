@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="main-content">
+    <div class="container">
+        <div class="page-header">
+            <h1>Posts tagged "{{ term.name }}"</h1>
+            <p>{{ term.pages | length }} post{% if term.pages | length != 1 %}s{% endif %} found</p>
+        </div>
+
+        <div class="blog-grid">
+            <div class="blog-posts">
+                {% for page in term.pages %}
+                <article class="blog-post">
+                    <div class="post-header">
+                        <div class="post-meta">
+                            <span><i class="fas fa-calendar"></i> {{ page.date | date(format="%B %d, %Y") }}</span>
+                            {% if page.extra.author %}
+                            <span><i class="fas fa-user"></i> {{ page.extra.author }}</span>
+                            {% endif %}
+                            {% if page.reading_time %}
+                            <span><i class="fas fa-clock"></i> {{ page.reading_time }} min read</span>
+                            {% endif %}
+                        </div>
+                        <h2 class="post-title">
+                            <a href="{{ page.permalink }}">{{ page.title }}</a>
+                        </h2>
+                        <p class="post-excerpt">
+                            {{ page.description | default(value=page.summary) }}
+                        </p>
+                    </div>
+                    <div class="post-content">
+                        <a href="{{ page.permalink }}" class="read-more">
+                            Read Full Article <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+
+            <aside class="sidebar">
+                {% set blog_section = get_section(path="blog/_index.md") %}
+                <div class="sidebar-widget">
+                    <h3>Recent Posts</h3>
+                    <div class="recent-posts">
+                        {% for recent_page in blog_section.pages | slice(end=5) %}
+                        <div class="recent-post">
+                            <h4><a href="{{ recent_page.permalink }}">{{ recent_page.title }}</a></h4>
+                            <div class="recent-post-meta">{{ recent_page.date | date(format="%B %d, %Y") }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {% set all_tags = get_taxonomy(kind="tags") %}
+                {% if all_tags %}
+                <div class="sidebar-widget">
+                    <h3>All Tags</h3>
+                    <div class="tags">
+                        {% for tag in all_tags.items %}
+                        <a href="{{ tag.permalink }}" class="tag{% if tag.name == term.name %}" style="background: var(--accent-primary); color: var(--bg-primary);"{% endif %}>{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="sidebar-widget">
+                    <h3>Back to Blog</h3>
+                    <a href="/blog/" class="btn-secondary" style="display: inline-block; text-align: center; width: 100%;">
+                        <i class="fas fa-arrow-left"></i> All Posts
+                    </a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</main>
+{% endblock content %}
